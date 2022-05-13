@@ -1,0 +1,97 @@
+#%RAML 1.0
+title: New API
+types:
+  milestone1:
+    items:
+      example:
+        strict: true
+        value:
+          id: "2482"
+          name: Kartik Kocchar
+          email: kartik_kocchar@rutherford.io
+          gender: female
+          status: inactive
+      properties:
+        id:
+          example: "2482"
+          type: string
+        name:
+          example: Kartik Kocchar
+          type: string
+        email:
+          example: kartik_kocchar@rutherford.io
+          type: string
+        gender:
+          example: female
+          type: string
+        status:
+          example: inactive
+          type: string
+  request:
+    example:
+      strict: true
+      value:
+        post-id: "2003"
+    properties:
+      post-id:
+        example: "2003"
+        type: string
+  response1:
+    example:
+      strict: true
+      value:
+        userdetails:
+          -
+            postid: "2003"
+            id: "1978"
+            name: Bhaaswar Pothuvaal III
+    properties:
+      userdetails:
+        items:
+          properties:
+            postid:
+              example: "2003"
+              type: string
+            id:
+              example: "1978"
+              type: string
+            name:
+              example: Bhaaswar Pothuvaal III
+              type: string
+  milestone3:
+    properties:
+      name:
+        example: Gorakhanatha Chaturvedi
+        type: string
+      status:
+        example: active
+        type: string
+      gender:
+        example: female
+        type: string
+mediaType:
+  - application/json
+protocols:
+  - HTTP
+/milestone1-chandana:
+  get:
+    responses:
+      "200":
+        body:
+          type: milestone1
+          items:
+            type: object
+/milestone2:
+  post:
+    body:
+      type: request
+    responses:
+      "201":
+        body:
+          type: response1
+/milestone3:
+  get:
+    responses:
+      "200":
+        body:
+          type: milestone3
